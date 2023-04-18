@@ -1,4 +1,4 @@
-#Wiederholsession zur folgenden Themen:
+# Wiederholsession zur folgenden Themen:
 - Listen
 - Tab Views
 - Navigation Stack?
@@ -6,7 +6,7 @@
 - Core Data
 
 
-##Vorwort:
+## Vorwort:
 Wir stellen uns vor wir Arbeiten für einen Kunden und dieser gibt uns grob seine Vorgaben vor. 
 Das heißt wir haben keine richtige Liste die wir abarbeiten können, wir müssen uns also selbst einen Plan machen, wie wir seine Wünsche in eine App umsetzen können.
 Wenn wir Vorgaben bekommen ist es gut auf "Keywords" zu achten bei den Anforderungen, diese können uns schon eine grobe Richtung geben was wir brauchen um die App umzusetzen.
@@ -14,7 +14,7 @@ Im folgenden Beispiel würde ich einem meine (Felix) herangehensweise zeigen, um
 Hierbei werde ich aber auch davon ausgehen, dass ich nicht alles im Kopf habe, also werde ich auch genau zeigen was ich suche damit ich die Vorgaben einhalten kann.
 
 
-##Kundenwunsch:
+## Kundenwunsch:
 Frau Bierbacher möchte gerne eine App erstellen, die für sie als Einkaufshilfe agiert. 
 Sie möchte gerne, dass sie Artikel zu einer Liste von Artikeln hinzufügen kann, so gesehen also eine Sammlung von allen möglichen Artikeln erstellen kann. Aus dieser Liste von Artikeln möchte sie nun mit einem Knopfdruck Artikel auswählen, welche sie zu ihrer Einkaufsliste hinzufügt. Beide Listen sollten jederzeit irgendwie einsehbar sein.
 Wenn sie einen Artikel eingepackt hat, möchte sie diesen gerne wieder von der Einkaufsliste löschen können. Weiterhin vergisst sie das Löschen gerne mal bei den letzten paar Artikeln uns wünscht sich somit auch einen Knopf um alle Artikel aus der Einkaufsliste zu löschen, spricht die Liste zu leeren.
@@ -22,18 +22,18 @@ Zudem wünscht sie sich, wenn sie auf einen der Artikel in der gesamtartikel Lis
 Das Alles soll natürlich gespeichert werden, damit die gesammelten Artikel bei jedem Appstart wieder da sind, sonst müsste sie jedes mal alle Artikel wieder neu eintippen.
 Sie hat keine Vorgaben gemacht, wie die App aussehen soll, ihr geht es erstmal rein um die Funktionalität.
 
-##Kundenwunsch Analyse
+## Kundenwunsch Analyse
 So nun haben wir die grobe Beschreibung zu der gewünschten App, jetzt geht es darum zu analysieren, was wir alles brauchen könnten.
 Dafür würde ich die Vorgabe auf bestimmte Schlagwörter untersuchen. Wir können ja mal Stück für Stück durchgehen, was ich erkennen würde.
 
 -----------------------------------------------------------------------------------------
-| Frau Bierbacher möchte gerne eine App erstellen, die für sie als Einkaufshilfe agiert.|
+Frau Bierbacher möchte gerne eine App erstellen, die für sie als Einkaufshilfe agiert.
 -----------------------------------------------------------------------------------------
 Dies ist ein Satz der mir nicht viel hilft, ich sehe in also nur als grobe Einleitung.
 
 -----------------------------------------------------------------------------------------
-| Sie möchte gerne, dass sie Artikel zu einer Liste von Artikeln hinzufügen kann,       |
-| so gesehen also eine Sammlung von allen möglichen Artikeln erstellen kann.            |
+Sie möchte gerne, dass sie Artikel zu einer Liste von Artikeln hinzufügen kann,
+so gesehen also eine Sammlung von allen möglichen Artikeln erstellen kann.
 -----------------------------------------------------------------------------------------
 Hier gibt es einige Infos, die uns sagen, was wir brauchen können.
 Zum einen wir hier schon explizit gesagt, dass Frau Bierbacher sich eine Liste von Artikeln wünscht, also denke ich mir wir brauchen an sich eine Listenansicht von Einträgen.
@@ -41,13 +41,13 @@ Weiterhin möchte sie neue Artikel zu dieser Liste hinzufügen können, dadurch 
 Also nur durch diesen Satz wissen wir, wir brauchen auf jedenfall eine Listenansicht und Livedata für diese Liste und für Livedata bietet sich das MVVM pattern an.
 
 -----------------------------------------------------------------------------------------
-| Aus dieser Liste von Artikeln möchte sie nun mit einem Knopfdruck Artikel auswählen,  |
-| welche sie zu ihrer Einkaufsliste hinzufügt.                                          |
+Aus dieser Liste von Artikeln möchte sie nun mit einem Knopfdruck Artikel auswählen,  
+welche sie zu ihrer Einkaufsliste hinzufügt.                                          
 -----------------------------------------------------------------------------------------
 Hierbei bekommen wir nun die Info, das wir den einzelnen Einträgen der Liste, eine Funktionalität zuweisen müssen, um diese in eine andere Liste zwischen zu speichern.
 
 -----------------------------------------------------------------------------------------
-| Beide Listen sollten jederzeit irgendwie einsehbar sein.                              |
+Beide Listen sollten jederzeit irgendwie einsehbar sein.                              
 -----------------------------------------------------------------------------------------
 Kurzer Satz, jedoch auch hier können wir etwas herrausnehmen.
 Da beide Listen einsehbar sein sollen, müssen wir also eine Möglichkeit haben beide anzeigen zu lassen.
@@ -55,33 +55,33 @@ Da könnte man jetzt eine Googlesuche zu starten, was für Möglichkeiten es da 
 Eine wäre zum Beispiel eine Tab view einzubauen, damit könnte man einfach hin und her zwischen Beiden Listen wechseln und sie somit jederzeit einsehen.
 
 -----------------------------------------------------------------------------------------
-| Wenn sie einen Artikel eingepackt hat, möchte sie diesen gerne wieder von der         |
-| Einkaufsliste löschen können. Weiterhin vergisst sie das Löschen gerne mal bei den    |
-| letzten paar Artikeln uns wünscht sich somit auch einen Knopf um alle Artikel aus der |
-| Einkaufsliste zu löschen, spricht die Liste zu leeren.                                |
+Wenn sie einen Artikel eingepackt hat, möchte sie diesen gerne wieder von der         
+Einkaufsliste löschen können. Weiterhin vergisst sie das Löschen gerne mal bei den    
+letzten paar Artikeln uns wünscht sich somit auch einen Knopf um alle Artikel aus der 
+Einkaufsliste zu löschen, spricht die Liste zu leeren.                                
 -----------------------------------------------------------------------------------------
 Die beiden Sätze tuen wir einfach mal zusammen, da die Infos die wir bekommen sehr ähnlich sind.
 Wir brauchen also für unsere zweite Liste die Möglichkeit Einträge zu löschen, glücklicherweise wird swipe to delete für uns übernommen in Swift und wir müssen uns nur um den extra Button kümmern, wir müssen also eine Funktion implementieren, welche die Liste eimal leert.
 
 -----------------------------------------------------------------------------------------
-| Zudem wünscht sie sich, wenn sie auf einen der Artikel in der gesamtartikel Liste     |
-| klickt, dass sich dadurch ein Bereich öffnet, wo sie Notizen zu diesem Artikel        |
-| hinzufügen kann, damit sie zum Beispiel dort verschiedene Rezepte angeben kann,       |
-| wofür dieser Artikel verwendet werden könnte.                                         |
+Zudem wünscht sie sich, wenn sie auf einen der Artikel in der gesamtartikel Liste     
+klickt, dass sich dadurch ein Bereich öffnet, wo sie Notizen zu diesem Artikel        
+hinzufügen kann, damit sie zum Beispiel dort verschiedene Rezepte angeben kann,       
+wofür dieser Artikel verwendet werden könnte.                                         
 -----------------------------------------------------------------------------------------
 Der letzte Part, wofür Frau Bierbacher die Funktion braucht ist uns erstmal egal, wir wissen aber nun, das wir eine Detailview einbauen müssen, auf die wir gelangen wenn wir auf ein Listenelement klicken.
 Desweiteren, wissen wir das unser Model für die Listeneinträge ein extra Bereich braucht, in dem wir die Notiz speichern können. 
 
 -----------------------------------------------------------------------------------------
-| Das Alles soll natürlich gespeichert werden, damit die gesammelten Artikel bei jedem  |
-| Appstart wieder da sind, sonst müsste sie jedes mal alle Artikel wieder neu eintippen.|
+Das Alles soll natürlich gespeichert werden, damit die gesammelten Artikel bei jedem  
+Appstart wieder da sind, sonst müsste sie jedes mal alle Artikel wieder neu eintippen.
 -----------------------------------------------------------------------------------------
 Hier bekommen wir nun die Info, dass wir unsere Daten in Core Data speichern müssen, dadurch müssen wir noch einmal unseren ersten Ansatz überdenken, wie wir die beiden Listen strukturieren. Zunächst haben wir uns ja überlegt 2 Listen anzulegen, eine für die "Stammdaten" und eine für die Einkaufsliste.
 Nun da wir aber mit Core Data arbeiten, würde sich es anbieten, in der Artikelliste einen Parameter zu setzen, dass dieser Artikel in der Einkaufsliste ist. Damit können wir nicht nur die "Stammdaten", sondern auch die Einkaufsliste speichern. Dazu müssen wir nun aber auch einen "Filter" bauen für unsere Einkaufsliste, das alle Artikel angezeigt werden, welche den Parameter gesetzt haben. Diesen Filter haben wir auch schon mal gehabt, mit Predicates! Des Weiteren müssen wir nun auch darauf achten, das swipe to delete vielleicht nicht ganz das mach was wir wollen, wir müssen also entweder die Funktionalität davon ändern, oder einen Button einbauen um Artikel aus der Einkaufsliste wieder zu entfernen, was mit unserem neuen Ansatz ja nur noch ein Toggle einer Variable ist.
 
 -----------------------------------------------------------------------------------------
-| Sie hat keine Vorgaben gemacht, wie die App aussehen soll, ihr geht es erstmal        |
-| rein um die Funktionalität.                                                           |
+Sie hat keine Vorgaben gemacht, wie die App aussehen soll, ihr geht es erstmal        
+rein um die Funktionalität.                                                           
 -----------------------------------------------------------------------------------------
 An sich keine Wichtigen Infos.
 
